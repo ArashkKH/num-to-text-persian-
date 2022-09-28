@@ -31,11 +31,21 @@ export default function App(){
     
     function GotNum(e) {
 
+
+
         let inp = String(e.target.value)
         let inpL = inp.length
         let mod = (inpL%3)
         // let inpRev = ''
         let tDinp = []
+
+        if(inp!=null){
+            document.getElementById('text').style.width='80vw'
+        }
+        if(inpL==0){
+            document.getElementById('text').style.width='20rem'
+        }
+        
 
         let pubLet = ''
 
