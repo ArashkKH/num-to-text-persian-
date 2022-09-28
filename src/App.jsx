@@ -23,6 +23,17 @@ export default function App(){
         navigator.clipboard.writeText(document.getElementById('text').value);
 
     }
+    function removeBtn(){
+
+        document.getElementById('num').value = null
+        document.getElementById('text').value = null
+        document.getElementById('text').style.width='20rem'
+        setNum()
+        setLetter()
+        
+        
+
+    }
 
     const [num,setNum] = React.useState()
     const [letter , setLetter] = React.useState()
@@ -126,6 +137,7 @@ export default function App(){
                 <div >
                     <input type="number" name="" id="num" placeholder="عدد" onInput={GotNum}/>
                     <NumDisplay prop={num}></NumDisplay>
+                    <div id="removeBtn" onClick={removeBtn}><i className="bi bi-trash"></i></div>
                 </div>
                 <i className="bi bi-arrow-down-up"></i>
                 <div>
