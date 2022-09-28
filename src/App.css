@@ -1,0 +1,210 @@
+li {
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: IranSans;
+}
+
+:root {
+  font-size: 16px;
+}
+@media only screen and (max-width: 1220px) {
+  :root {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 1080px) {
+  :root {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 940px) {
+  :root {
+    font-size: 10px;
+  }
+}
+@media only screen and (max-width: 680px) {
+  :root {
+    font-size: 8px;
+  }
+}
+
+@font-face {
+  font-family: "IranSans";
+  font-weight: normal;
+  src: local("IranSans"), url(./Fonts/IRANSansX-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "IranSans";
+  font-weight: bold;
+  src: local("IranSans"), url(./Fonts/IRANSansX-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "IranSansnum";
+  font-weight: normal;
+  src: local("IranSansnum"), url(./Fonts/IRANSansXFaNum-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "IranSansnum";
+  font-weight: bold;
+  src: local("IranIranSansnumSans"), url(./Fonts/IRANSansXFaNum-Bold.ttf) format("truetype");
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+::-moz-selection {
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+::selection {
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+main {
+  direction: rtl;
+  width: 100%;
+  height: 100vh;
+  background: rgb(24, 24, 24);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+main .header {
+  margin-top: -100px;
+}
+main h1 {
+  margin: 4rem;
+  text-shadow: 5px 5px 2px rgb(0, 0, 0);
+}
+main .inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+main .inputs > div {
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+main .inputs > div #copyBtn {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 50%;
+  left: 98%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: white;
+  color: black;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0);
+  transition: 0.4s;
+}
+main .inputs > div #copyBtn i {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main .inputs > div #copyBtn:hover {
+  box-shadow: 0px 0px 10px rgb(255, 255, 255);
+}
+main .inputs > div #copyBtn:active {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0);
+}
+main .inputs input, main .inputs #numDisplay {
+  width: 20rem;
+  height: 3rem;
+  margin: 30px;
+  text-align: center;
+  font-family: IranSansnum;
+  font-weight: bold;
+  border-radius: 1.5rem;
+  outline: none;
+  border: none;
+  transition: 0.4s;
+}
+main .inputs #numDisplay {
+  background: rgb(255, 237, 176);
+  direction: ltr;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 2px rgb(0, 0, 0);
+}
+main .inputs #num {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  opacity: 1;
+  background: rgba(255, 0, 0, 0);
+  color: rgb(0, 0, 0);
+  direction: ltr;
+  z-index: 10;
+}
+main .inputs #num:focus ~ #numDisplay {
+  box-shadow: 0px 0px 15px rgb(153, 99, 0);
+}
+main .inputs #text {
+  background: rgb(176, 255, 176);
+  box-shadow: 5px 5px 2px rgb(0, 0, 0);
+}
+main .inputs #text:focus {
+  box-shadow: 0px 0px 15px rgb(31, 153, 0);
+}
+
+footer {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translate(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+footer ul {
+  padding: 0;
+  width: 30rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 2rem;
+}
+footer span {
+  font-size: 0.8rem;
+}/*# sourceMappingURL=App.css.map */
