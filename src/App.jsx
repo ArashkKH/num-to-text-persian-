@@ -1,6 +1,7 @@
 import React from "react";
 import './App.css'
 import NumDisplay from './numberDisplay'
+import letterDisplay from './letterDis'
 
 export default function App(){
     // const Yekan =  ['صفر', 'یک', 'دو', 'سه', 'چهار', 'پنچ', 'شش', 'هفت', 'هشت', 'نه']
@@ -11,8 +12,8 @@ export default function App(){
 
     const numBook = [
          ['','هزار', 'میلیون', 'میلیار', 'بیلیون', 'بیلیارد', 'تریلیون', 'تریلیارد'],
-         ['صفر','', 'یک', 'دو', 'سه', 'چهار', 'پنچ', 'شش', 'هفت', 'هشت', 'نه'],
-         ['یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده'],
+         ['', 'یک', 'دو', 'سه', 'چهار', 'پنچ', 'شش', 'هفت', 'هشت', 'نه'],
+         ['','یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده'],
          ['ده', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'],
          ['صد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد']
     ]
@@ -25,6 +26,8 @@ export default function App(){
     }
 
     const [num,setNum] = React.useState()
+    const [letter , setLetter] = React.useState()
+
 
     
     function GotNum(e) {
@@ -32,23 +35,48 @@ export default function App(){
         let inp = String(e.target.value)
         let inpL = inp.length
         let mod = (inpL%3)
-        let inpRev
-        let tDinp = [[]]
+        // let inpRev = ''
+        let tDinp = []
 
-        for(let i = inpL-1 ; i = 0 ; i--){
-            // inpRev[Math.abs(i-inpL+1)] = inp[i]
-            console.log(inp[i])
+        for(let i = 0 ; i<(Math.ceil(inpL/3)) ; i++){
+            tDinp.push([])
         }
+
+        let temp = inpL-1
+        for(let i = tDinp.length-1; i>=0 ; i--){
+            for(let j = 2; j>=0; j--){
+                if(temp >= 0){
+                    tDinp[i][j] = inp[temp]
+                }
+                temp--
+            }
+        }
+
+        let pubNum = []
+
+
+        tDinp.map((element,index)=>{
+            pubNum.push('')
+            element.map((elementt)=>{
+                if(elementt!=null && elementt!=''){
+                    pubNum[index] += (elementt)
+                }
+            })
+        })
+
+        console.log(String(pubNum))
+        setNum(String(pubNum))
+
         
 
-        console.log(inpRev)
+
+        let pubLet = ''
 
 
 
-
-        // setNum(e.target.value)
 
     }
+
 
 
     return(
@@ -64,7 +92,7 @@ export default function App(){
                 </div>
                 <i className="bi bi-arrow-down-up"></i>
                 <div>
-                    <input type="text" name="" id="text" placeholder="حروف" autoComplete="off" />
+                    <letterDisplay prop={letter}></letterDisplay>
                     <div id="copyBtn" onClick={Copybtn}><i className="bi bi-clipboard"></i></div>
                 </div>
             </div>
