@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css'
 import NumDisplay from './numberDisplay'
-import letterDisplay from './letterDis'
+import LetterDisplay from './letterDis'
 
 export default function App(){
     // const Yekan =  ['صفر', 'یک', 'دو', 'سه', 'چهار', 'پنچ', 'شش', 'هفت', 'هشت', 'نه']
@@ -13,15 +13,14 @@ export default function App(){
     const numBook = [
          ['','هزار', 'میلیون', 'میلیار', 'بیلیون', 'بیلیارد', 'تریلیون', 'تریلیارد'],
          ['', 'یک', 'دو', 'سه', 'چهار', 'پنچ', 'شش', 'هفت', 'هشت', 'نه'],
-         ['','یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده'],
-         ['ده', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'],
-         ['صد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد']
+         ['ده','یازده', 'دوازده', 'سیزده', 'چهارده', 'پانزده', 'شانزده', 'هفده', 'هجده', 'نوزده'],
+         ['','ده', 'بیست', 'سی', 'چهل', 'پنجاه', 'شصت', 'هفتاد', 'هشتاد', 'نود'],
+         ['','صد', 'دویست', 'سیصد', 'چهارصد', 'پانصد', 'ششصد', 'هفتصد', 'هشتصد', 'نهصد']
     ]
 
     function Copybtn(){
 
-        console.clear()
-        document.getElementById('num').value = ''
+        navigator.clipboard.writeText(document.getElementById('text').value);
 
     }
 
@@ -37,6 +36,8 @@ export default function App(){
         let mod = (inpL%3)
         // let inpRev = ''
         let tDinp = []
+
+        let pubLet = ''
 
         for(let i = 0 ; i<(Math.ceil(inpL/3)) ; i++){
             tDinp.push([])
@@ -54,26 +55,52 @@ export default function App(){
 
         let pubNum = []
 
-
+        let byThree = tDinp.length
         tDinp.map((element,index)=>{
             pubNum.push('')
-            element.map((elementt)=>{
+            element.map((elementt,indexx)=>{
                 if(elementt!=null && elementt!=''){
                     pubNum[index] += (elementt)
                 }
+                //-----------
+                if(indexx==0 && elementt!=(null)){
+                    if(index!=0 && elementt!=0){
+                        pubLet += 'و '
+                    }
+                    pubLet += numBook[4][elementt] + ' '
+                    
+                }else
+                if(indexx==1 && elementt!=null){
+                    if(elementt != 1){
+                        if(element[indexx-1]!=null && elementt!=0){
+                            pubLet += 'و '
+                        }
+                        pubLet += numBook[3][elementt] + ' '
+                    }
+                }else
+                if((indexx==2 && elementt!=null) && (element[0]!=0 || element[1]!=0 || element[2]!=0)){
+
+                    if(element[1]!=1 ){
+                        if(element[indexx-1]!=null && elementt!=0){
+                            pubLet += 'و '
+                        }
+                        pubLet += numBook[1][elementt] + ' ' + numBook[0][byThree-1] + ' '
+                    }else{
+                        if(element[indexx-1]!=null && elementt!=0 && (index != 0 || element[0]!=null) ){
+                            pubLet += 'و '
+                        }
+                        pubLet += numBook[2][elementt] + ' ' + numBook[0][byThree-1] + ' '
+                    }
+                }
+
             })
+            byThree--
         })
 
-        console.log(String(pubNum))
+        pubLet = pubLet.replace(/ +(?= )/g,'');
+        // console.log(tDinp)
         setNum(String(pubNum))
-
-        
-
-
-        let pubLet = ''
-
-
-
+        setLetter(pubLet)
 
     }
 
@@ -92,7 +119,7 @@ export default function App(){
                 </div>
                 <i className="bi bi-arrow-down-up"></i>
                 <div>
-                    <letterDisplay prop={letter}></letterDisplay>
+                    <LetterDisplay prop={letter}></LetterDisplay>
                     <div id="copyBtn" onClick={Copybtn}><i className="bi bi-clipboard"></i></div>
                 </div>
             </div>
